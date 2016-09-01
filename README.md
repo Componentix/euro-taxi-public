@@ -1,13 +1,5 @@
 # Public API Spec
 
-## Start
-
-```
-node apps/public-api/app
-```
-
-## Usage
-
 ## Headers
 
 Application key *Required for all requests*.
