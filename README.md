@@ -1,5 +1,13 @@
 # Public API Spec
 
+## Start
+
+```
+node apps/public-api/app
+```
+
+## Usage
+
 ## Headers
 
 Application key *Required for all requests*.
@@ -7,7 +15,7 @@ Application key *Required for all requests*.
 X-App-Key: $key
 ```
 
-Authorization JWT token *Required for authorized requests*.
+Authorization Token *Required for authorized requests*.
 ```
 Authorization: Bearer $token
 ```
@@ -33,7 +41,7 @@ Response: `200`
 [{
     name: 'Bandera street'
 }, {
-    name: 'Bandera lane'
+    name: 'Shukhevich lane'
 }]
 ```
 
@@ -52,20 +60,14 @@ Response: `200`
     id: 1,
     name: 'Animals',
     price: {
-        start: 1000,
-        drive: 500,
-        wait: 88,
-        min: 2000,
-        multiplier: 2
+        start: 1000, // drive start price (in minor unit like cents)
+        drive: 500, // price per km
+        wait: 88, // waiting price per minute
+        min: 2000, // min price
+        multiplier: 2 // price miltiplier
     }
 }]
 ```
-
-- start: drive start price (in minor unit like cents)
-- drive: price per km
-- wait: price per minute
-- min: min price
-- multiplier: price miltiplier
 
 ### Tariffs
 
@@ -77,21 +79,20 @@ GET /tariffs
 ```
 
 Response: `200`
+*Similar to Options*
 ```
 [{
     id: 2,
     name: 'Comfort',
     price: {
-        start: 1000,
-        drive: 500,
-        wait: 88,
-        min: 2000,
-        multiplier: 2
+        start: 1000, // drive start price (in minor unit like cents)
+        drive: 500, // price per km
+        wait: 88, // waiting price per minute
+        min: 2000, // min price
+        multiplier: 2 // price miltiplier
     }
 }]
 ```
-
-Same price fileds as options
 
 ### Session
 
@@ -111,7 +112,9 @@ POST /session
 Response: `201`
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IiszODA5Mzc2NjAxMjMifQ.KYOW0H08XBDOUmIcXfI2JskxAYEKPG0iHYI_Cdj06MU"
+    "phone": "+380937661234",
+    "confirmed": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -127,6 +130,15 @@ POST /session/confirmation
 ```
 {
     "confirmation": "1234"
+}
+```
+
+Response: `201`
+```
+{
+    "phone": "+380937661234",
+    "confirmed": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -158,7 +170,7 @@ GET /orders/:id
 Status one of:
 - **searching**: searching for a car
 - **accepted**: accepted by driver
-- **ready**: driver arrived
+- **arrived**: driver arrived
 - **running**: ride is started
 - **completed**: order is successfuy completed
 - **cancelled**: order is cancelled
@@ -168,9 +180,14 @@ Response: `200`
 {
     id: 1,
     status: "searching",
-    cancelReason: "police",
-    time: "2015-03-25T12:00:00",
     comment: "waiting for 15 min",
+    createdAt: "2015-03-25T12:00:00",
+    car: {
+        driver: "Alexander",
+        info: "Kia Rio (Small 555-888)",
+        color: "Black",
+        arrivesAt: "2015-03-25T12:00:00"
+    },
     route: {
         addresses: [{
             street: "Soborna",
@@ -246,6 +263,15 @@ Response: `201`
 ```
 Same as orders#show
 ```
+
+#### Destroy
+
+Request:
+```
+DELETE /orders/:id
+```
+
+Response: `200`
 
 ### Order Feedback
 
