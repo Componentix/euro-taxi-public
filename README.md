@@ -1,13 +1,5 @@
 # Public API Spec
 
-## Start
-
-```
-node apps/public-api/app
-```
-
-## Usage
-
 ## Headers
 
 Application key *Required for all requests*.
@@ -212,9 +204,29 @@ Response: `200`
         }
     },
     modifiers: {
+        tariff: {
+            id: 2,
+            name: "Comfort",
+            price: {
+                start: 1000,
+                drive: 500,
+                wait: 88,
+                min: 2000,
+                multiplier: 2
+            }
+        },
         options: [{
-            name: "Drive"
+            id: 3,
+            name: "Drive",
+            price: {
+                start: 1000,
+                drive: 500,
+                wait: 88,
+                min: 2000,
+                multiplier: 2
+            }
         }, {
+            id: 4,
             name: "Animals"
         }],
         tips: 1500
@@ -225,7 +237,7 @@ Response: `200`
     summary: {
         distance: 22000,
         waiting: 48000,
-        total: 4800
+        price: 4800
     }
 }
 ```
@@ -239,22 +251,31 @@ POST /orders
 
 ```
 {
-    time: "2015-03-25T12:00:00",
     comment: "waiting for 15 min",
     route: {
+        calculated: [{
+            lat: 123.2,
+            lng: 32.1
+        }],
         adderesses: [{
             street: "Soborna",
             house: 75,
             comment: "3"
         }]
-    }
+    },
     modifiers: {
+        tariff: {
+            id: 3
+        },
         options: [{
             id: 1
         }, {
             id: 2
         }],
         tips: 15
+    },
+    summary: {
+        price: 1234
     }
 }
 ```
