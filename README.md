@@ -1,5 +1,11 @@
 # Public API Spec
 
+- All date/time fields formatted according to RFC 3339;
+- All texts use Markdown format;
+- All money related values measured in minor units (like cents);
+- All distances in meters;
+- All durations in seconds.
+
 ## Headers
 
 Application key *Required for all requests*.
