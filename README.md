@@ -6,6 +6,14 @@
 - All distances in meters;
 - All durations in seconds.
 
+## Start
+
+```
+node apps/public-api/app
+```
+
+## Usage
+
 ## Headers
 
 Application key *Required for all requests*.
@@ -180,11 +188,11 @@ Response: `200`
     status: "searching",
     comment: "waiting for 15 min",
     createdAt: "2015-03-25T12:00:00",
+    arrivedAt: "2015-03-25T12:00:00",
     car: {
         driver: "Alexander",
         info: "Kia Rio (Small 555-888)",
-        color: "Black",
-        arrivesAt: "2015-03-25T12:00:00"
+        color: "Black"
     },
     route: {
         addresses: [{
@@ -257,13 +265,14 @@ POST /orders
 
 ```
 {
+    arrivedAt: "2015-03-25T12:00:00",
     comment: "waiting for 15 min",
     route: {
         calculated: [{
             lat: 123.2,
             lng: 32.1
         }],
-        adderesses: [{
+        addresses: [{
             street: "Soborna",
             house: 75,
             comment: "3"
