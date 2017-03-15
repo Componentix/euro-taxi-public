@@ -6,12 +6,6 @@
 - All distances in meters;
 - All durations in seconds.
 
-## Start
-
-```
-node apps/public-api/app
-```
-
 ## Usage
 
 ## Headers
@@ -47,13 +41,17 @@ Response: `200`
 [{
     name: 'Bandera street'
 }, {
-    name: 'Shukhevich lane'
+    name: 'Railway station',
+    street: 'Railway',
+    house: '1'
 }]
 ```
 
 ### Options
 
 #### Index
+
+Options types is: preorder, comfort, van, wagon, premium
 
 Request:
 ```
@@ -64,7 +62,8 @@ Response: `200`
 ```
 [{
     id: 1,
-    name: 'Animals',
+    name: 'PreOrder',
+    type: 'preorder',
     price: {
         start: 1000, // drive start price (in minor unit like cents)
         drive: 500, // price per km
@@ -198,7 +197,8 @@ Response: `200`
         addresses: [{
             street: "Soborna",
             house: "75",
-            place: "3",
+            comment: "3",
+            place: "Oblrada",
             location: {
                 lat: 49.48163,
                 lng: 23.76362
@@ -221,6 +221,7 @@ Response: `200`
         tariff: {
             id: 2,
             name: "Comfort",
+            type: "comfort",
             price: {
                 start: 1000,
                 drive: 500,
