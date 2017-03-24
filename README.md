@@ -6,6 +6,12 @@
 - All distances in meters;
 - All durations in seconds.
 
+## Start
+
+```
+node apps/public-api/app
+```
+
 ## Usage
 
 ## Headers
@@ -190,8 +196,15 @@ Response: `200`
     arrivesAt: "2015-03-25T12:00:00",
     car: {
         driver: "Alexander",
-        info: "Kia Rio (Small 555-888)",
-        color: "Black"
+        vendor: "Kia",
+        model: "Rio (Small 555-888)",
+        color: "Black",
+        number: "АВ7777АВ",
+        year: 2002,
+        location: {
+            lat: 49.48123,
+            lng: 23.76342
+        }
     },
     route: {
         addresses: [{
@@ -211,11 +224,7 @@ Response: `200`
         actual: [{
             lat: 49.48163,
             lng: 23.76362
-        }],
-        currentLocation: {
-            lat: 49.48123,
-            lng: 23.76342
-        }
+        }]
     },
     modifiers: {
         tariff: {
