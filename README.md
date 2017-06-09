@@ -45,11 +45,11 @@ GET /places?q=:query
 Response: `200`
 ```
 [{
-    name: 'Bandera street'
+    "name": "Bandera street"
 }, {
-    name: 'Railway station',
-    street: 'Railway',
-    house: '1'
+    "name": "Railway station",
+    "street": "Railway",
+    "house": "1"
 }]
 ```
 
@@ -67,15 +67,15 @@ GET /options
 Response: `200`
 ```
 [{
-    id: 1,
-    name: 'PreOrder',
-    type: 'preorder',
-    price: {
-        start: 1000, // drive start price (in minor unit like cents)
-        drive: 500, // price per km
-        wait: 88, // waiting price per minute
-        min: 2000, // min price
-        multiplier: 2 // price miltiplier
+    "id": 1,
+    "name": "PreOrder",
+    "type": "preorder",
+    "price": {
+        "start": 1000, // drive start price (in minor unit like cents)
+        "drive": 500, // price per km
+        "wait": 88, // waiting price per minute
+        "min": 2000, // min price
+        "multiplier": 2 // price miltiplier
     }
 }]
 ```
@@ -93,14 +93,14 @@ Response: `200`
 *Similar to Options*
 ```
 [{
-    id: 2,
-    name: 'Comfort',
-    price: {
-        start: 1000, // drive start price (in minor unit like cents)
-        drive: 500, // price per km
-        wait: 88, // waiting price per minute
-        min: 2000, // min price
-        multiplier: 2 // price miltiplier
+    "id": 2,
+    "name": "Comfort",
+    "price": {
+        "start": 1000, // drive start price (in minor unit like cents)
+        "drive": 500, // price per km
+        "wait": 88, // waiting price per minute
+        "min": 2000, // min price
+        "multiplier": 2 // price miltiplier
     }
 }]
 ```
@@ -117,24 +117,24 @@ GET /cars
 Response: `200`
 ```
 [{
-    id: 7,
-    driver: "Alexander",
-    vendor: "Kia",
-    model: "Rio (Small 555-888)",
-    color: "Black",
-    year: 2002,
-    location: {
-        lat: 49.48123,
-        lng: 23.76342
+    "id": 7,
+    "driver": "Alexander",
+    "vendor": "Kia",
+    "model": "Rio (Small 555-888)",
+    "color": "Black",
+    "year": 2002,
+    "location": {
+        "lat": 49.48123,
+        "lng": 23.76342
     }
 }, {
-    id: 9,
-    driver: "Vladimir",
-    vendor: "Audi",
-    model: "TT",
-    color: "Red",
-    year: 2017,
-    location: {
+    "id": 9,
+    "driver": "Vladimir",
+    "vendor": "Audi",
+    "model": "TT",
+    "color": "Red",
+    "year": 2017,
+    "location": {
         lat: 49.48321,
         lng: 23.76123
     }
@@ -152,16 +152,16 @@ POST /session
 
 ```
 {
-    phone: "+380937660123"
+    "phone": "+380937660123"
 }
 ```
 
 Response: `201`
 ```
 {
-    phone: "+380937661234",
-    confirmed: false,
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+    "phone": "+380937661234",
+    "confirmed": false,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -176,16 +176,16 @@ POST /session/confirmation
 
 ```
 {
-    confirmation: "1234"
+    "confirmation": "1234"
 }
 ```
 
 Response: `201`
 ```
 {
-    phone: "+380937661234",
-    confirmed: true,
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+    "phone": "+380937661234",
+    "confirmed": true,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -227,83 +227,83 @@ Status one of:
 Response: `200`
 ```
 {
-    id: 1,
-    status: "searching",
-    comment: "waiting for 15 min",
-    createdAt: "2015-03-25T12:00:00",
-    arrivesAt: "2015-03-25T12:00:00",
-    cancelSource: null,
-    car: {
-        driver: "Alexander",
-        vendor: "Kia",
-        model: "Rio (Small 555-888)",
-        color: "Black",
-        number: "АВ7777АВ",
-        year: 2002,
-        location: {
-            lat: 49.48123,
-            lng: 23.76342
+    "id": 1,
+    "status": "searching",
+    "comment": "waiting for 15 min",
+    "createdAt": "2015-03-25T12:00:00",
+    "arrivesAt": "2015-03-25T12:00:00",
+    "cancelSource": null,
+    "car": {
+        "driver": "Alexander",
+        "vendor": "Kia",
+        "model": "Rio (Small 555-888)",
+        "color": "Black",
+        "number": "АВ7777АВ",
+        "year": 2002,
+        "location": {
+            "lat": 49.48123,
+            "lng": 23.76342
         }
     },
-    route: {
-        addresses: [{
-            street: "Soborna",
-            house: "75",
-            comment: "3",
-            place: "Oblrada",
-            location: {
-                lat: 49.48163,
-                lng: 23.76362
+    "route": {
+        "addresses": [{
+            "street": "Soborna",
+            "house": "75",
+            "comment": "3",
+            "place": "Oblrada",
+            "location": {
+                "lat": 49.48163,
+                "lng": 23.76362
             }
         }],
-        calculated: [{
+        "calculated": [{
             lat: 49.48163,
             lng: 23.76362
         }],
-        coordinates: [{
-            time: "2017-04-21T12:00:00",
-            lat: 49.48163,
-            lng: 23.76362
+        "coordinates": [{
+            "time": "2017-04-21T12:00:00",
+            "lat": 49.48163,
+            "lng": 23.76362
         }, {
-            time: "2017-05-25T16:07:47.588Z",
-            lat: 49.23448663440057,
-            lng: 28.42429950660288
+            "time": "2017-05-25T16:07:47.588Z",
+            "lat": 49.23448663440057,
+            "lng": 28.42429950660288
             }
         }]
     },
-    modifiers: {
-        tariff: {
-            id: 2,
-            name: "Comfort",
-            type: "comfort",
-            price: {
-                start: 1000,
-                drive: 500,
-                wait: 88,
-                min: 2000,
-                multiplier: 2
+    "modifiers": {
+        "tariff": {
+            "id": 2,
+            "name": "Comfort",
+            "type": "comfort",
+            "price": {
+                "start": 1000,
+                "drive": 500,
+                "wait": 88,
+                "min": 2000,
+                "multiplier": 2
             }
         },
-        options: [{
-            id: 3,
-            name: "Drive",
-            price: {
-                start: 1000,
-                drive: 500,
-                wait: 88,
-                min: 2000,
-                multiplier: 2
+        "options": [{
+            "id": 3,
+            "name": "Drive",
+            "price": {
+                "start": 1000,
+                "drive": 500,
+                "wait": 88,
+                "min": 2000,
+                "multiplier": 2
             }
         }, {
-            id: 4,
-            name: "Animals"
+            "id": 4,
+            "name": "Animals"
         }],
-        tips: 1500
+        "tips": 1500
     },
-    summary: {
-        distance: 22000,
-        waiting: 48000,
-        price: 4800
+    "summary": {
+        "distance": 22000,
+        "waiting": 48000,
+        "price": 4800
     }
 }
 ```
@@ -317,55 +317,55 @@ POST /orders
 
 ```
 {
-    id: 123456,
-    comment: null,
-    status: "searching",
-    cancelSource: null,
-    arrivesAt: null,
-    createdAt: "2015-06-09T12:00:00.767Z",
-    modifiers: {
-        tariff: {
-            id: 19,
-            name: "Taxi",
-            type: "standart",
-            price: {
-                start: 2100,
-                drive: 860,
-                wait: 100,
-                min: 3800,
-                multiplier: 1
+    "id": 123456,
+    "comment": null,
+    "status": "searching",
+    "cancelSource": null,
+    "arrivesAt": null,
+    "createdAt": "2015-06-09T12:00:00.767Z",
+    "modifiers": {
+        "tariff": {
+            "id": 19,
+            "name": "Taxi",
+            "type": "standart",
+            "price": {
+                "start": 2100,
+                "drive": 860,
+                "wait": 100,
+                "min": 3800,
+                "multiplier": 1
             }
         },
-        options: [{
-            id: 3,
-            name: "Drive",
-            price: {
-                start: 1000,
-                drive: 500,
-                wait: 88,
-                min: 2000,
-                multiplier: 2
+        "options": [{
+            "id": 3,
+            "name": "Drive",
+            "price": {
+                "start": 1000,
+                "drive": 500,
+                "wait": 88,
+                "min": 2000,
+                "multiplier": 2
             }
         }]
     },
-    route: {
-        addresses: [{
-            id: 376058,
-            street: "Soborna",
-            place: null,
-            house: "75",
-            location: {
-                lat: 49.230182,
-                lng: 28.4624495
+    "route": {
+        "addresses": [{
+            "id": 376058,
+            "street": "Soborna",
+            "place": null,
+            "house": "75",
+            "location": {
+                "lat": 49.230182,
+                "lng": 28.4624495
             }
         }],
-        calculated: null,
-        coordinates: []
+        "calculated": null,
+        "coordinates": []
     },
-    summary: {
-        distance: 50,
-        waiting: 10,
-        price: 200
+    "summary": {
+        "distance": 50,
+        "waiting": 10,
+        "price": 200
     }
 }
 ```
@@ -389,10 +389,10 @@ Response: `200`
 
 ```
 {
-    error: "Unprocessible entity",
-    data: {
-        base: ["error1", "error2"],
-        field1: ["error11", "error12"]
+    "error": "Unprocessible entity",
+    "data": {
+        "base": ["error1", "error2"],
+        "field1": ["error11", "error12"]
     }
 }
 ```
