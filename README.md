@@ -105,6 +105,42 @@ Response: `200`
 }]
 ```
 
+### Cars
+
+#### Index
+
+Request:
+```
+GET /cars
+```
+
+Response: `200`
+```
+[{
+    id: 7,
+    driver: "Alexander",
+    vendor: "Kia",
+    model: "Rio (Small 555-888)",
+    color: "Black",
+    year: 2002,
+    location: {
+        lat: 49.48123,
+        lng: 23.76342
+    }
+}, {
+    id: 9,
+    driver: "Vladimir",
+    vendor: "Audi",
+    model: "TT",
+    color: "Red",
+    year: 2017,
+    location: {
+        lat: 49.48321,
+        lng: 23.76123
+    }
+}]
+```
+
 ### Session
 
 #### Create
@@ -116,16 +152,16 @@ POST /session
 
 ```
 {
-    "phone": "+380937660123"
+    phone: "+380937660123"
 }
 ```
 
 Response: `201`
 ```
 {
-    "phone": "+380937661234",
-    "confirmed": false,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+    phone: "+380937661234",
+    confirmed: false,
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -140,16 +176,16 @@ POST /session/confirmation
 
 ```
 {
-    "confirmation": "1234"
+    confirmation: "1234"
 }
 ```
 
 Response: `201`
 ```
 {
-    "phone": "+380937661234",
-    "confirmed": true,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+    phone: "+380937661234",
+    confirmed: true,
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
 }
 ```
 
@@ -158,6 +194,8 @@ Response: `201`
 **Requires Authorization**
 
 #### Index
+
+*Last 5 orders, with status: 'completed'*
 
 Request:
 ```
@@ -194,6 +232,7 @@ Response: `200`
     comment: "waiting for 15 min",
     createdAt: "2015-03-25T12:00:00",
     arrivesAt: "2015-03-25T12:00:00",
+    cancelSource: null,
     car: {
         driver: "Alexander",
         vendor: "Kia",
@@ -221,9 +260,15 @@ Response: `200`
             lat: 49.48163,
             lng: 23.76362
         }],
-        actual: [{
+        coordinates: [{
+            time: "2017-04-21T12:00:00",
             lat: 49.48163,
             lng: 23.76362
+        }, {
+            time: "2017-05-25T16:07:47.588Z",
+            lat: 49.23448663440057,
+            lng: 28.42429950660288
+            }
         }]
     },
     modifiers: {
@@ -255,9 +300,6 @@ Response: `200`
         }],
         tips: 1500
     },
-    feeback: {
-        rating: 3.5
-    },
     summary: {
         distance: 22000,
         waiting: 48000,
@@ -275,32 +317,55 @@ POST /orders
 
 ```
 {
-    arrivesAt: "2015-03-25T12:00:00",
-    comment: "waiting for 15 min",
-    route: {
-        calculated: [{
-            lat: 123.2,
-            lng: 32.1
-        }],
-        addresses: [{
-            street: "Soborna",
-            house: 75,
-            comment: "3"
-        }]
-    },
+    id: 123456,
+    comment: null,
+    status: "searching",
+    cancelSource: null,
+    arrivesAt: null,
+    createdAt: "2015-06-09T12:00:00.767Z",
     modifiers: {
         tariff: {
-            id: 3
+            id: 19,
+            name: "Taxi",
+            type: "standart",
+            price: {
+                start: 2100,
+                drive: 860,
+                wait: 100,
+                min: 3800,
+                multiplier: 1
+            }
         },
         options: [{
-            id: 1
-        }, {
-            id: 2
+            id: 3,
+            name: "Drive",
+            price: {
+                start: 1000,
+                drive: 500,
+                wait: 88,
+                min: 2000,
+                multiplier: 2
+            }
+        }]
+    },
+    route: {
+        addresses: [{
+            id: 376058,
+            street: "Soborna",
+            place: null,
+            house: "75",
+            location: {
+                lat: 49.230182,
+                lng: 28.4624495
+            }
         }],
-        tips: 15
+        calculated: null,
+        coordinates: []
     },
     summary: {
-        price: 1234
+        distance: 50,
+        waiting: 10,
+        price: 200
     }
 }
 ```
@@ -318,32 +383,16 @@ DELETE /orders/:id
 ```
 
 Response: `200`
-
-### Order Feedback
-
-**Requires Authorization**
-
-#### Create
-
-Request:
-```
-POST /orders/:id/feedback
-```
-
-```
-{
-    "rating": 3.5
-}
 ```
 
 ### Errors
 
 ```
 {
-    "error": "Unprocessible entity",
-    "data": {
-        "base": ["error1", "error2"],
-        "field1": ["error11", "error12"]
+    error: "Unprocessible entity",
+    data: {
+        base: ["error1", "error2"],
+        field1: ["error11", "error12"]
     }
 }
 ```
